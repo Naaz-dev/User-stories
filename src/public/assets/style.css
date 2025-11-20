@@ -1,0 +1,249 @@
+/* Basisvariabelen met kleuren en standaardlettertype */
+:root {
+    --primary: #1a73e8;
+    --primary-dark: #1255a5;
+    --danger: #d93025;
+    --danger-dark: #a5221b;
+    --secondary: #6c757d;
+    --light: #f8f9fb;
+    --border: #dfe1e5;
+    --text: #202124;
+    --success: #198754;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Globale body-styling */
+body {
+    margin: 0;
+    background: var(--light);
+    color: var(--text);
+}
+
+/* Achtergrondgradient voor pagina's met lichte achtergrond */
+.bg-light {
+    background: linear-gradient(180deg, #ffffff 0%, #eef2f7 100%);
+    min-height: 100vh;
+}
+
+/* Layoutcontainer voor de meeste pagina's */
+.container {
+    width: min(1100px, 94vw);
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+}
+
+/* Smallere container voor bijvoorbeeld het loginformulier */
+.container.narrow {
+    width: min(420px, 90vw);
+    padding-top: 6rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Kaartcomponent met schaduw en afgeronde hoeken */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Groepeer label + input/ select */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* Inputs en selecties consistent stylen */
+.form-group input,
+.form-group select {
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+/* Responsief formulierraster */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem 1.5rem;
+}
+
+/* Algemene knopstijl */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hoverfeedback voor knoppen */
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Klein duwtje bij klikken */
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* Varianten van knoppen */
+.btn-primary {
+    background: var(--primary);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+}
+
+.btn-danger {
+    background: var(--danger);
+}
+
+.btn-danger:hover {
+    background: var(--danger-dark);
+}
+
+.btn-small {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+}
+
+/* Actiegebied onder formulieren */
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Basisopmaak voor meldingen */
+.alert {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Variaties op meldingen */
+.alert-success {
+    border: 1px solid rgba(25, 135, 84, 0.2);
+    background: rgba(25, 135, 84, 0.1);
+    color: var(--success);
+}
+
+.alert-error {
+    border: 1px solid rgba(217, 48, 37, 0.2);
+    background: rgba(217, 48, 37, 0.1);
+    color: var(--danger);
+}
+
+.alert-info {
+    border: 1px solid rgba(26, 115, 232, 0.2);
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--primary);
+}
+
+/* Validatiefouten bij inputs */
+.error {
+    color: var(--danger);
+    font-size: 0.85rem;
+}
+
+/* Scrollbare tabelcontainer */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* Basistabelstijl */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table thead {
+    background: var(--primary);
+    color: white;
+}
+
+table th,
+table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.95rem;
+}
+
+/* Actieknoppen in tabelrij */
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Formulier inline tonen voor delete-knop */
+.inline-form {
+    display: inline;
+}
+
+/* Headerbalk bovenaan de app */
+.top-bar {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem min(1100px, 94vw);
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Stijl voor checkbox + label */
+.checkbox {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Vergroot aanklikbaar gebied van checkbox */
+.checkbox input {
+    width: 18px;
+    height: 18px;
+}
+
+/* Mobiele aanpassingen */
+@media (max-width: 680px) {
+    .top-bar {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  # PHP/Apache container met onze applicatiecode
+  app:
+    build: .
+    container_name: userstories_app
+    ports:
+      - "8080:80"
+    environment:
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8080
+      MYSQL_HOST: db
+      MYSQL_DATABASE: user_management
+      MYSQL_USER: user_app
+      MYSQL_PASSWORD: user_secret
+    depends_on:
+      - db
+    volumes:
+      - ./src/public:/var/www/html
+      - ./src/includes:/var/www/includes
+    restart: unless-stopped
+
+  # MariaDB database voor opslag van gebruikers
+  db:
+    image: mariadb:11.3
+    container_name: userstories_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: user_management
+      MARIADB_USER: user_app
+      MARIADB_PASSWORD: user_secret
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: user_management
+      MYSQL_USER: user_app
+      MYSQL_PASSWORD: user_secret
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -u$${MARIADB_USER:-user_app} -p$${MARIADB_PASSWORD:-user_secret} -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # phpMyAdmin interface voor beheer via de browser
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: userstories_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_USER: user_app
+      PMA_PASSWORD: user_secret
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
